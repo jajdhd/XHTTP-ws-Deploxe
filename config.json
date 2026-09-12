@@ -24,27 +24,6 @@
           "mode": "packet-up"
         }
       }
-    },
-    {
-      "tag": "ws-in",
-      "port": 8443,
-      "protocol": "vless",
-      "settings": {
-        "clients": [
-          {
-            "id": "8f3a2b1c-9d4e-4f6a-b7c8-1e2d3f4a5b6c",
-            "flow": ""
-          }
-        ],
-        "decryption": "none"
-      },
-      "streamSettings": {
-        "network": "websocket",
-        "security": "none",
-        "wsSettings": {
-          "path": "/ws-3n8v5x1z"
-        }
-      }
     }
   ],
   "outbounds": [
