@@ -1,6 +1,8 @@
 #!/bin/sh
 
-PORT=${PORT:-8443}
+# نادیده گرفتن PORT و استفاده از 8080
+PORT=8080
+echo "Forcing PORT to: $PORT"
 
 cat > /tmp/config.json << EOF
 {
@@ -31,10 +33,5 @@ cat > /tmp/config.json << EOF
   ]
 }
 EOF
-
-echo "===================="
-echo "PORT: $PORT"
-echo "Starting Xray..."
-echo "===================="
 
 exec /usr/local/bin/xray run -c /tmp/config.json
