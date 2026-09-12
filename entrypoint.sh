@@ -1,10 +1,11 @@
 #!/bin/sh
 
 PORT=${PORT:-8080}
+echo "PORT: $PORT"
 
 cat > /tmp/config.json << EOF
 {
-  "log": {"loglevel": "warning"},
+  "log": {"loglevel": "debug"},
   "inbounds": [
     {
       "tag": "ws-in",
@@ -19,9 +20,12 @@ cat > /tmp/config.json << EOF
       "streamSettings": {
         "network": "websocket",
         "security": "none",
-        "wsSettings": {
-          "path": "/ws-3n8v5x1z"
-        }
+        "wsSettings": {"path": "/ws-3n8v5x1z"}
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"],
+        "routeOnly": false
       }
     }
   ],
@@ -30,12 +34,5 @@ cat > /tmp/config.json << EOF
   ]
 }
 EOF
-
-echo "===================="
-echo "Xray Config Loaded (WebSocket only)"
-echo "PORT: $PORT"
-echo "UUID: 8f3a2b1c-9d4e-4f6a-b7c8-1e2d3f4a5b6c"
-echo "WS Path: /ws-3n8v5x1z"
-echo "===================="
 
 exec /usr/local/bin/xray run -c /tmp/config.json
